@@ -30,7 +30,8 @@ h5 {
 }
 
 .refresh-btn,
-.task-btn {
+.task-btn,
+.delete-btn {
   border: none;
   margin-left: 10px;
   cursor: pointer;
@@ -38,15 +39,26 @@ h5 {
 }
 
 .refresh-icon,
+.enter-key-icon,
 .more-icon {
   color: gray;
   font-size: 24px !important;
 }
 
+.enter-key-icon{
+  font-size: 16px !important;
+}
+
 .task-input {
   border: none;
   font-style: italic;
-  width: 400px;
+  width: 95%;
+}
+
+.edit-input {
+  border: none;
+  width: 95%;
+  padding-bottom: 2px;
 }
 
 *:focus {
@@ -88,4 +100,12 @@ h5 {
 
 .hr-ignore-btm {
   margin-bottom: 0;
+}
+
+form {
+  display: flex;
+}
+
+#to-do-list {
+  text-align: center;
 }
