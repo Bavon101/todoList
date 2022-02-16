@@ -17,20 +17,20 @@
 				<h4>
 					Today's To Do
 				</h4>
-				<button class="refresh-btn">
+				<button class="refresh-btn" id="refresh-btn">
 					<i class="material-icons refresh-icon">refresh</i>
 				</button>
 			</div>
 			<hr>
 			<form action="#" id="form" class="padding-l-r">
-				<input type="text" placeholder="Add to your list ..." id="task" required class="task-input" />
+				<input type="text" placeholder="Add to your list ..." id="task-input" required class="task-input" />
+				<span class="material-icons enter-key-icon">
+					keyboard_return
+				</span>
 			</form>
 			<hr>
-			<div id="to-do-list">
-				
-			</div>
-
-			<button class="clear-btn">
+			<div id="to-do-list"></div>
+			<button class="clear-btn" id="clear-btn">
 				Clear all completed
 			</button>
 		</section>
