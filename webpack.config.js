@@ -13,6 +13,7 @@ module.exports = {
   output: {
     clean: true,
   },
+  mode: 'none',
   module: {
     rules: [
       {

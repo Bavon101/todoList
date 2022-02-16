@@ -1,1 +1,39 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>To do list</title><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"><link rel="preconnect" href="https://fonts.googleapis.com"><script defer="defer" src="main.js"></script></head><body><header></header><section class="to-do-section"><div class="title padding-l-r"><h4>Today's To Do</h4><button class="refresh-btn"><i class="material-icons refresh-icon">refresh</i></button></div><hr><form action="#" id="form" class="padding-l-r"><input placeholder="Add to your list ..." id="task" required class="task-input"/></form><hr><div id="to-do-list"></div><button class="clear-btn">Clear all completed</button></section></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>To do list</title>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+	<script defer src="main.js"></script></head>
+
+	<body>
+		<header></header>
+		<section class="to-do-section">
+			<div class="title padding-l-r">
+				<h4>
+					Today's To Do
+				</h4>
+				<button class="refresh-btn" id="refresh-btn">
+					<i class="material-icons refresh-icon">refresh</i>
+				</button>
+			</div>
+			<hr>
+			<form action="#" id="form" class="padding-l-r">
+				<input type="text" placeholder="Add to your list ..." id="task-input" required class="task-input" />
+				<span class="material-icons enter-key-icon">
+					keyboard_return
+				</span>
+			</form>
+			<hr>
+			<div id="to-do-list"></div>
+			<button class="clear-btn" id="clear-btn">
+				Clear all completed
+			</button>
+		</section>
+	</body>
+
+</html>
