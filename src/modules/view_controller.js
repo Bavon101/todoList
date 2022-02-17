@@ -47,7 +47,7 @@ const getEditField = (id) => {
   editInput.focus();
   editForm.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
-      if (editInput.value.length > 0) {
+      if (editInput.value.trim().length > 0) {
         t.description = editInput.value;
         updateEdit(t, true);
       } else {
@@ -98,6 +98,9 @@ const createToDoList = () => {
     checkContainer.appendChild(checkBox);
     const taskName = document.createElement('h5');
     taskName.innerHTML = t.description;
+    if (t.completed) {
+      taskName.style.textDecoration = 'line-through';
+    }
     checkContainer.appendChild(taskName);
     taskContainer.appendChild(checkContainer);
     const moreBtn = document.createElement('button');
@@ -119,9 +122,14 @@ const createToDoList = () => {
 };
 const addNew = () => {
   const description = document.getElementById('task-input').value;
-  task.add(description);
-  form.reset();
-  createToDoList();
+  if (description.trim().length > 0) {
+    task.add(description);
+    form.reset();
+    createToDoList();
+  } else {
+    // eslint-disable-next-line no-alert
+    alert('You cannot add an empty task');
+  }
 };
 const getTasks = () => {
   if (localStorage.getItem('tasks')) {
