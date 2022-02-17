@@ -36,8 +36,10 @@ export default class Tasks {
     this.tasks = JSON.parse(localStorage.getItem('tasks'));
   };
 
-  reIndex = () => {
-    this.tasks.sort((a, b) => a.index - b.index);
+  reIndex = (sort = true) => {
+    if (sort) {
+      this.tasks.sort((a, b) => a.index - b.index);
+    }
     for (let i = 0; i < this.tasks.length; i += 1) {
       this.tasks[i].index = i + 1;
     }
@@ -53,5 +55,14 @@ export default class Tasks {
     d = d.toLowerCase().trim();
     const e = this.tasks.filter((t) => t.description.toLowerCase().trim() === d);
     return e.length > 0;
+  }
+
+  reOrder = (icoming, outgoing) => {
+    const dragged = this.tasks.filter((t) => t.id === icoming)[0];
+    const beingReplaced = this.tasks.filter((t) => t.id === outgoing)[0];
+    this.tasks.splice(dragged.index - 1, 1);
+    this.tasks.splice(beingReplaced.index - 1, 0, dragged);
+    this.reIndex(false);
+    this.saveTasks();
   }
 }

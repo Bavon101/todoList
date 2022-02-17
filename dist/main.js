@@ -565,7 +565,11 @@ const createToDoList = () => {
   task.tasks.map((t) => {
     const taskContainer = document.createElement('div');
     taskContainer.classList.add('task-container', 'padding-l-r');
+    taskContainer.setAttribute('class', 'task-container');
     taskContainer.setAttribute('id', t.id);
+    taskContainer.setAttribute('draggable', 'true');
+    taskContainer.style.backgroundColor = 'white';
+    taskContainer.style.transition = 'all 300ms ease-in-out';
     const checkContainer = document.createElement('div');
     checkContainer.classList.add('check-container');
     const checkBox = document.createElement('input');
@@ -623,8 +627,45 @@ const getTasks = () => {
   }
 };
 
+let graggedTask;
+const initDragListiners = () => {
+  document.addEventListener('drag', () => {
+  }, false);
+  document.addEventListener('dragstart', (e) => {
+    graggedTask = e.target;
+    e.target.style.opacity = '.5';
+  }, false);
+  document.addEventListener('dragend', (e) => {
+    e.target.style.opacity = '';
+  }, false);
+  document.addEventListener('dragover', (e) => {
+    e.preventDefault();
+  }, false);
+  document.addEventListener('dragenter', (e) => {
+    if (e.target.className === 'task-container') {
+      e.target.style.background = 'rgb(239, 239, 239)';
+      e.target.style.padding = '2px';
+    }
+  }, false);
+  document.addEventListener('dragleave', (e) => {
+    if (e.target.className === 'task-container') {
+      e.target.style.background = 'white';
+      e.target.style.padding = '0';
+    }
+  }, false);
+  document.addEventListener('drop', (e) => {
+    e.preventDefault();
+    if (e.target.className === 'task-container') {
+      task.reOrder(parseInt(graggedTask.id, 10), parseInt(e.target.id, 10));
+      e.target.style.background = '';
+      e.target.style.padding = '0';
+      createToDoList();
+    }
+  }, false);
+};
 const init = () => {
   getTasks();
+  initDragListiners();
   document.getElementById('clear-btn').onclick = () => { task.clearCompleted(); createToDoList(); };
   document.getElementById('refresh-btn').onclick = () => { getTasks(); };
   form.addEventListener('keydown', (e) => {
@@ -682,8 +723,10 @@ class Tasks {
     this.tasks = JSON.parse(localStorage.getItem('tasks'));
   };
 
-  reIndex = () => {
-    this.tasks.sort((a, b) => a.index - b.index);
+  reIndex = (sort = true) => {
+    if (sort) {
+      this.tasks.sort((a, b) => a.index - b.index);
+    }
     for (let i = 0; i < this.tasks.length; i += 1) {
       this.tasks[i].index = i + 1;
     }
@@ -699,6 +742,15 @@ class Tasks {
     d = d.toLowerCase().trim();
     const e = this.tasks.filter((t) => t.description.toLowerCase().trim() === d);
     return e.length > 0;
+  }
+
+  reOrder = (icoming, outgoing) => {
+    const dragged = this.tasks.filter((t) => t.id === icoming)[0];
+    const beingReplaced = this.tasks.filter((t) => t.id === outgoing)[0];
+    this.tasks.splice(dragged.index - 1, 1);
+    this.tasks.splice(beingReplaced.index - 1, 0, dragged);
+    this.reIndex(false);
+    this.saveTasks();
   }
 }
 
