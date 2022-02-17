@@ -146,7 +146,10 @@ const getTasks = () => {
 
 let graggedTask;
 const initDragListiners = () => {
-  document.addEventListener('drag', () => {
+  document.addEventListener('drag', (e) => {
+    e.target.style.cursor = 'grab';
+    e.target.style.backgroundColor = 'rgb(239, 239, 239)';
+    e.target.style.padding = '2px';
   }, false);
   document.addEventListener('dragstart', (e) => {
     graggedTask = e.target;
