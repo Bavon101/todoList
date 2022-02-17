@@ -2,6 +2,9 @@ export default class Tasks {
   tasks = [];
 
   add = (description) => {
+    if (this.taskExists(description)) {
+      return;
+    }
     const task = {
       id: Date.now(),
       description,
@@ -44,5 +47,11 @@ export default class Tasks {
     this.tasks = this.tasks.filter((t) => !t.completed);
     this.reIndex();
     this.saveTasks();
+  }
+
+  taskExists = (d) => {
+    d = d.toLowerCase().trim();
+    const e = this.tasks.filter((t) => t.description.toLowerCase().trim() === d);
+    return e.length > 0;
   }
 }
