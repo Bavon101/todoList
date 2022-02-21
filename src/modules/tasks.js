@@ -51,9 +51,10 @@ export default class Tasks {
     this.saveTasks();
   }
 
-  taskExists = (d) => {
+  taskExists = (d = '') => {
     d = d.toLowerCase().trim();
-    const e = this.tasks.filter((t) => t.description.toLowerCase().trim() === d);
+    const e = this.tasks.filter((t) => t.description.toLowerCase().trim()
+      === d);
     return e.length > 0;
   }
 
