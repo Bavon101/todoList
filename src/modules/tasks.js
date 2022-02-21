@@ -53,7 +53,8 @@ export default class Tasks {
 
   taskExists = (d) => {
     d = d.toLowerCase().trim();
-    const e = this.tasks.filter((t) => t.description.toLowerCase().trim() === d);
+    const e = this.tasks.filter((t) => t.description.toLowerCase().trim()
+      === d);
     return e.length > 0;
   }
 
