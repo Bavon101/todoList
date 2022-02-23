@@ -23,6 +23,7 @@ export default class Tasks {
     this.tasks = this.tasks.filter((t) => t.id !== id);
     this.reIndex();
     this.saveTasks();
+    return id;
   };
 
   edit = (index, completed = false, description) => {
