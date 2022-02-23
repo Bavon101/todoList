@@ -1,4 +1,4 @@
 import './style.css';
-import start from './modules/view_controller.js';
+import * as start from './modules/view_controller.js';
 
-start();
+start.init();

@@ -2,9 +2,8 @@ import Tasks from './tasks.js';
 
 const task = new Tasks();
 const form = document.getElementById('form');
-const toDoList = document.getElementById('to-do-list');
 const createDefault = () => {
-  toDoList.innerHTML = 'There are no task available';
+  document.getElementById('to-do-list').innerHTML = 'There are no task available';
 };
 
 const updateEdit = (t = {}, refresh = false) => {
@@ -72,8 +71,11 @@ const getEditField = (id) => {
   container.appendChild(checkContainer);
   container.appendChild(deleteBtn);
 };
-const createToDoList = () => {
-  toDoList.replaceChildren();
+export const createToDoList = (T) => {
+  if (T !== null && T !== undefined) {
+    task.tasks = T.tasks;
+  }
+  document.getElementById('to-do-list').replaceChildren();
   if (task.tasks.length === 0) {
     createDefault();
     return;
@@ -115,13 +117,13 @@ const createToDoList = () => {
     moreBtn.onclick = () => { getEditField(t.id); };
     moreBtn.appendChild(moreIcon);
     taskContainer.appendChild(moreBtn);
-    toDoList.appendChild(taskContainer);
+    document.getElementById('to-do-list').appendChild(taskContainer);
     const divider = document.createElement('hr');
     if ((t.index - 1) === (task.tasks.length - 1)) {
       divider.classList.add('hr-ignore-btm');
     }
-    toDoList.appendChild(divider);
-    return toDoList;
+    // document.getElementById('to-do-list').appendChild(divider);
+    return document.getElementById('to-do-list');
   });
 };
 const addNew = () => {
@@ -183,7 +185,7 @@ const initDragListiners = () => {
     }
   }, false);
 };
-const init = () => {
+export const init = () => {
   getTasks();
   initDragListiners();
   document.getElementById('clear-btn').onclick = () => { task.clearCompleted(); createToDoList(); };
@@ -194,5 +196,3 @@ const init = () => {
     }
   });
 };
-
-export default init;
