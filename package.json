@@ -11,7 +11,9 @@
   "keywords": [],
   "author": "Bavon101",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "jsdom": "^19.0.0"
+  },
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.16.8",
     "babel-eslint": "^10.1.0",
