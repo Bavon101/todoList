@@ -8,6 +8,8 @@
 <!-- ## You can access the live portfolio [here](https://bavon101.github.io/my_portfolio/#About) -->
 
 Additional description about the project and its features.
+This is a simple web page that allows one to manage his/her daily tasks, one can `add` a task, `edit` , `delete`, and finally `delete all` completed.
+The tasks are saved localy via `localeStorage`
 ## Screenshots Desktop 📷
 ![screenshot](./images/screen_0_0.PNG)
 
